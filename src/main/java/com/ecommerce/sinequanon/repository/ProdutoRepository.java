@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.ecommerce.sinequanon.exception.ResourceNotFoundException;
 import com.ecommerce.sinequanon.model.Produto;
 
 @Repository
@@ -67,7 +68,7 @@ public class ProdutoRepository {
         Optional<Produto> produtoEncontrado = obterPorId(produto.getId());
 
         if(produtoEncontrado.isEmpty()){
-            throw new InputMismatchException("Produto não encontrado");
+            throw new ResourceNotFoundException("Produto não encontrado");
         }
         //remove o produto anterior
         deletar(produto.getId());
